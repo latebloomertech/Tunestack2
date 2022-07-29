@@ -7,4 +7,11 @@ Rails.application.routes.draw do
   to: 'fallback#index',
   constraints: ->(req) { !req.xhr? && req.format.html? }
 
+  namespace :api do
+    namespace :v1 do
+      get 'login', to: "auth#spotify_request"
+      get 'auth', to: "auth#show"
+      get 'user', to: "users#create"
+    end
+  end
 end

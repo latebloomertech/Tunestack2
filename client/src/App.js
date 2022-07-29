@@ -20,6 +20,9 @@ function App() {
           </Route>
           <Route exact path="/">
             <h1>This is Tunestack. Page Count: {count}</h1>
+            <a href="/api/v1/login">
+              <button>Sign in with Spotify</button>
+            </a>
           </Route>
         </Switch>
       </div>
