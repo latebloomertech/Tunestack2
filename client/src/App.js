@@ -15,11 +15,11 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route path="/testing">
+          <Route exact path="/testing">
             <h1>Test Route</h1>
           </Route>
-          <Route path="/">
-            <h1>Page Count: {count}</h1>
+          <Route exact path="/">
+            <h1>This is Tunestack. Page Count: {count}</h1>
           </Route>
         </Switch>
       </div>
