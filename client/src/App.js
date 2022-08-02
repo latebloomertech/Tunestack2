@@ -40,12 +40,7 @@ console.log("access token", {accessToken})
           <Route exact path="/testing">
             <h1>Test Route</h1>
           </Route>
-          {/* <Route exact path="/">
-            <h1>This is Tunestack. Page Count: {count}</h1>
-            <a href="http://localhost:3000/api/v1/login">
-              <button>Sign in with Spotify</button>
-              </a>
-          </Route> */}
+
           <Route exact path="/">
             <Landing accessToken={accessToken} />
           </Route>
@@ -56,3 +51,10 @@ console.log("access token", {accessToken})
 }
 
 export default App;
+
+   /* <Route exact path="/">
+            <h1>This is Tunestack. Page Count: {count}</h1>
+            <a href="http://localhost:3000/api/v1/login">
+              <button>Sign in with Spotify</button>
+              </a>
+          </Route> */
