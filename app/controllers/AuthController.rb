@@ -5,7 +5,6 @@ def spotify_request
     url = "https://accounts.spotify.com/authorize"
     query_params = {
         # client_id: 'ec952199a27d436b923a57c0c9e1ea7c',
-        client_id: 'ec952199a27d436b923a57c0c9e1ea7c',
         client_id: Rails.application.credentials[Rails.env.to_sym][:spotify][:client_id],
         response_type: 'code',
         # redirect_uri:'http://localhost:4000/',
