@@ -40,3 +40,13 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "active_model_serializers", "~> 0.10.13"
+
+gem "rest-client", "~> 2.1.0"
+
+gem 'jwt'
+
+gem "figaro"
+
+gem 'rack'
+
+gem 'rack-cors'

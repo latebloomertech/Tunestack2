@@ -1,51 +1,39 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Link,
-  useLocation
-} from "react-router-dom";
-import Landing from "./components/Landing"
+  Redirect } from "react-router-dom";
+import Landing from "./components/Landing";
 import Header from "./components/Header";
+import Callback from "./components/Callback";
+import Profile from "./components/Profile";
 
-// const getHashParams = () => {
-//   const location = useLocation();
-//   const params = new URLSearchParams(location.hash);
+// moving handleCode outside of the useEffect
 
-//   return <div>getHashParams {JSON.stringify([...params.entries()])}</div>;
-// }
 
 
 function App() {
-//   const [count, setCount] = useState(0);
-  // const [accessToken, setAccessToken] = useState(null)
+  const [currentUser, setCurrentUser] = useState(null)
 
-
+  const handleCode = async (code) => {
+    console.log("code", code)
+    let response = await fetch('http://localhost:3000/api/login', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ code })
+    })
+    response = await response.json();
+    console.log("response", response)
+    setCurrentUser(response)
+  }
+  console.log("currentUser", currentUser)
   // useEffect(() => {
-  //   fetch("/hello")
-  //     .then((r) => r.json())
-  //     .then((data) => setCount(data.count));
-  // }, []);
-
-//   useEffect(() => {
-//     function getHashParams() {
-//       var hashParams = {};
-//       var e, r = /([^&;=]+)=?([^&;]*)/g,
-//         q = window.location.hash.substring(1);
-//       while (e = r.exec(q)) {
-//         hashParams[e[1]] = decodeURIComponent(e[2]);
-//       }
-//       console.log([hashParams])
-//       console.log([hashParams.access_token])
-//       setAccessToken(hashParams.access_token);
-
-//     }
-//     getHashParams()
-
-//   }, [setAccessToken])
-
-// console.log("access token", {accessToken})
+  //   handleCode()
+  // }, [setCurrentUser])
 
 
   return (
@@ -53,13 +41,18 @@ function App() {
       <div className="App">
       <Header/>
         <Switch>
-          <Route exact path="/testing">
-            <h1>Test Route</h1>
+          <Route exact path="/">
+            <Landing currentUser={currentUser} />
           </Route>
 
-          <Route exact path="/">
-            <Landing/>
+          <Route exact path="/callback">
+            <Callback handleCode={handleCode} currentUser={currentUser}/>
           </Route>
+
+          <Route exact path="/profile">
+            <Profile currentUser={currentUser} />
+          </Route>
+
         </Switch>
       </div>
     </Router>
@@ -68,9 +61,28 @@ function App() {
 
 export default App;
 
-   /* <Route exact path="/">
-            <h1>This is Tunestack. Page Count: {count}</h1>
-            <a href="http://localhost:3000/api/v1/login">
-              <button>Sign in with Spotify</button>
-              </a>
-          </Route> */
+
+// useEffect(() => {
+//   async function handleCode(code) {
+//     let response = await fetch('http://localhost:3000/login', {
+//       method: 'POST',
+//       headers: {
+//         'Accept': 'application/json',
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({ code })
+//     })
+//     response = await response.json();
+//     setCurrentUser(response)
+
+
+//     handleCode()
+//     return (
+//       <Redirect to='/profile' />
+//     )
+//   }
+//   }, [setCurrentUser])
+
+
+
+
