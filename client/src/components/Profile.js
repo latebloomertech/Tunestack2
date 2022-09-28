@@ -4,7 +4,7 @@ import TopArtistCardContainer from './TopArtistCardContainer';
 
 
 function Profile({ currentUser }) {
-
+    const { profile_img_url, display_name, spotify_url } = currentUser
 console.log("Profile", currentUser)
     // const [userPlaylists, setUserPlaylists] = useState([])
     // const [userTopArtists, setUserTopArtists] = useState([])
@@ -34,20 +34,21 @@ console.log("Profile", currentUser)
 
 
     return (
-
+        <>
     <div>
-            <h1>Hello, {currentUser.display_name}</h1>
+            <h1>Hello, {display_name}</h1>
 
             <a
-            href={currentUser.spotify_url}>
-            <img src={currentUser.profile_img_url}  alt="profileImg"/>
+            href={spotify_url}>
+            <img src={profile_img_url}  alt="profileImg"/>
             </a>
 
             {/* <Link to={`/rules/grouping`}>
                 <button>Let's get Started!</button>
             </Link> */}
 
-    </div>
+            </div>
+            </>
   )
 }
 

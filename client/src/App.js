@@ -9,10 +9,6 @@ import Header from "./components/Header";
 import Callback from "./components/Callback";
 import Profile from "./components/Profile";
 
-// moving handleCode outside of the useEffect
-
-
-
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
 
@@ -29,11 +25,9 @@ function App() {
     response = await response.json();
     console.log("response", response)
     setCurrentUser(response)
+
   }
   console.log("currentUser", currentUser)
-  // useEffect(() => {
-  //   handleCode()
-  // }, [setCurrentUser])
 
 
   return (
@@ -42,13 +36,12 @@ function App() {
       <Header/>
         <Switch>
           <Route exact path="/">
-            <Landing currentUser={currentUser} />
+            <Landing/>
           </Route>
 
           <Route exact path="/callback">
-            <Callback handleCode={handleCode} currentUser={currentUser}/>
+            <Callback handleCode={handleCode} currentUser={currentUser} />
           </Route>
-
           <Route exact path="/profile">
             <Profile currentUser={currentUser} />
           </Route>
