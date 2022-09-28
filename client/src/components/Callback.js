@@ -1,22 +1,25 @@
 import { React, useEffect} from "react";
-import Profile from "./Profile";
 import { Redirect } from "react-router-dom"
+import Profile from "./Profile";
 
-function Callback({handleCode}) {
+function Callback({handleCode, currentUser}) {
 
-
-    const code = window.location.search.split("?code=")[1];
+  const code = window.location.search.split("?code=")[1];
 
     useEffect(() => {
       handleCode(code)
-      }, [])
+      },[])
 
+  if(currentUser)
   return (
     <>
-    <Redirect to='/profile' />
+      <Profile currentUser={currentUser} />
     </>
   )
-
 }
 
 export default Callback
+
+    // <>
+    // <Redirect to='/profile' />
+    // </>
