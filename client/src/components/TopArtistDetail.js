@@ -6,7 +6,7 @@ function TopArtistDetail({topArtist}) {
 
   return (
     <div className='card'>
-        <img className='artist-image' src={topArtist.images[0].url} alt='artist image' />
+        <img className='artist-image' src={topArtist.images[0].url} alt='artist' />
         <p>{topArtist.name}</p>
     </div>
   )

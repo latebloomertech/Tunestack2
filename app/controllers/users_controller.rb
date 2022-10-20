@@ -5,11 +5,15 @@ def create
         auth_params = SpotifyApiAdapter.login(params[:code])
         user_data = SpotifyApiAdapter.getUserData(auth_params["access_token"])
 
+        puts "THE USER DATA", user_data
+
         user = User.find_or_create_by(user_params(user_data))
         img_url = user_data["images"][0] ? user_data["images"][0]["url"] : nil
 
         encodedAccess = issue_token({token: auth_params["access_token"]})
         encodedRefresh = issue_token({token: auth_params["refresh_token"]})
+
+        puts encodedAccess
 
         user.update(profile_img_url: img_url,access_token: encodedAccess,refresh_token: encodedRefresh)
 
@@ -17,6 +21,7 @@ def create
     end
 
     private
+
     def user_params(user_data)
         params = {
             email: user_data["email"],
