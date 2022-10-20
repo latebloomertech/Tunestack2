@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get 'api/auth', to: "sessions#create"
   post 'api/login', to: "users#create"
+  get 'api/topartists', to: "topartists#index"
+  get 'api/playlists', to: "playlists#index"
 
   get '*path',
   to: 'fallback#index',
